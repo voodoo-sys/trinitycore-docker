@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  trinitycore-worldserver:
+    image: "trinitycore-server:latest"
+    container_name: "trinitycore-worldserver"
+    stdin_open: true
+    tty: true
+    volumes:
+      - type: volume
+        source: trinitycore-worldserver-data
+        target: /srv/trinitycore/data
+    env_file:
+      - "trinitycore-worldserver.env"
+    depends_on:
+      - "trinitycore-db"
+    network_mode: "host"
+    restart: unless-stopped
+
+  trinitycore-bnetserver:
+    image: "trinitycore-server:latest"
+    container_name: "trinitycore-bnetserver"
+    env_file:
+      - "trinitycore-bnetserver.env"
+    depends_on:
+      - "trinitycore-db"
+      - "trinitycore-worldserver"
+    network_mode: "host"
+    restart: unless-stopped
+
+  trinitycore-db:
+    image: "trinitycore-db:latest"
+    container_name: "trinitycore-db"
+    volumes:
+      - type: volume
+        source: trinitycore-db-data
+        target: /var/lib/mysql
+    env_file:
+      - "trinitycore-db.env"
+    restart: "always"
+    network_mode: "host"
+
+volumes:
+  trinitycore-worldserver-data:
+    external: true
+  trinitycore-db-data:
