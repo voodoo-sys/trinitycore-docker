@@ -1,6 +1,12 @@
 # trinitycore-docker
 
-### Building
+### Overview
+
+Dockerized build and run for trinitycore master branch.
+
+https://github.com/TrinityCore/TrinityCore
+
+### Instruction
 
 1. build trinitycore-server image (see ./trinitycore-server:latest/README.md)
 
