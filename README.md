@@ -10,7 +10,7 @@
    - this will probably take a long time
 
 4. edit trinitycore/trinitycore-bnetserver.env
-   - replace the __IP_ADDRESS__ with ip address of your pc/server
+   - replace the `__IP_ADDRESS__` with ip address of your pc/server
 
 ```
 BNETSERVER_CONF='LoginREST.LocalAddress=__IP_ADDRESS__|LoginRESTExternalAddress=__IP_ADDRESS__'
@@ -25,7 +25,7 @@ docker-compose up -d
 
 6. patch realmlist
 
-once databases are populated in step 5, patch the realmlist - replace __IP_ADDRESS__ with ip address of your pc/server
+once databases are populated in step 5, patch the realmlist - replace `__IP_ADDRESS__` with ip address of your pc/server
 
 ```
 docker exec -it trinitycore-db mysql -u trinity -ptrinity -h 127.0.0.1 -P 3306 -e 'UPDATE auth.realmlist SET address = "__IP_ADDRESS__", localAddress = "__IP_ADDRESS__";'
